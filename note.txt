@@ -1,0 +1,39 @@
+npm run dev      //to run the app
+
+NEXT.js + MongoDB (03.15.2022)
+npx create-next-app --example with-mongodb  app-name.   //to setup a starter folder, which has the mongodb integration with next.js
+
+When run ’npm run dev’ , get the error:  
+
+——
+if (!process.env.MONGODB_URI) {
+> 10 |   throw new Error('Please add your Mongo URI to .env.local')
+——
+
+To fix it: 
+Change ‘env.local.example’ file name to ‘env.local’
+Then inside the file, for the ‘MONGODB_URI =‘ five the MongoDB connection URL
+
+In your mongodb atlas press ‘Connect’ —> ‘Connect your application’ , then copy and past the code to the ‘env.local’ file for the ‘MONGODB_URI =‘.
+Then, 
+
+export async function getServerSideProps(context) {
+  
+    const data = client.db("sample_mflix");  //here can add the name of the database you will use for this app. In this case we work with ‘sample_mflix’. Now, we can execute MongoDB commands, like: 
+
+    const data = await db.collection("movies").find({}).limit(20).toArray(); //use collection() ------- to define the collection name we need, 
+    find() --------- with {} argument, means we don't specify what kinda data we need, whatever comes. 
+    limit(20) ------- means  we need only 20 first movies, 
+    toArray() -------- at the end we want the data as an array of objects. 
+
+
+      const movies = JSON.parse(JSON.stringify(data)); then stringify the data to plain JS object.
+     JSON.stringify(data) ------- this to convert all of our data types into plain JS objects, then use JSON.parse() to make them objects that we can interact with.
+
+…..
+
+
+ADD TAILWIND package
+npm i tailwindcss postcss autoprefixer
+
+Then, run ——> ‘’npx tailwindcss init -p’’   to create ‘posts.config’ file

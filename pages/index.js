@@ -1,3 +1,4 @@
+import "tailwindcss/tailwind.css";
 import Head from "next/head";
 import clientPromise from "../lib/mongodb";
 
@@ -10,7 +11,9 @@ export default function Home({ isConnected }) {
       </Head>
 
       <main>
-        <h1 className="title">Welcome Next.js and MongoDB project</h1>
+        <h1 className="title bg-green-500">
+          Welcome Next.js and MongoDB project
+        </h1>
 
         {isConnected ? (
           <h2 className="subtitle">You are connected to MongoDB</h2>

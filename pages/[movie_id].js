@@ -28,11 +28,12 @@ export default function MovieDetails({ movie }) {
 }
 
 export async function getServerSideProps(context) {
+  // console.log(context.query.movie_id);
   const data = await fetch(
-    "http://localhost:3000/api/moviedetails?movie_id=573a13e9f29313caabdcc734"
+    `http://localhost:3000/api/moviedetails?movie_id=${context.query.movie_id}`
   );
   const movie = await data.json();
-  console.log(movie);
+
   return {
     props: { movie },
   };

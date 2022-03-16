@@ -21,8 +21,11 @@ export default function Home({ movies }) {
           {movies &&
             movies.map((movie) => (
               <div className="w-1/4 p-8 border border-black">
-                <h2 key={movies.id}>{movie.title}</h2>
-                <p>{movie.year}</p>
+                <h2 key={movies.id} className="font-bold text-gray-600">
+                  {movie.title}
+                </h2>
+                <p className="text-xs ">Release date: {movie.year}</p>
+                <p>IMDB Rating: {movie.imdb.rating}⭐️</p>
               </div>
             ))}
         </div>
@@ -36,7 +39,7 @@ export async function getServerSideProps(context) {
   const db = client.db("sample_mflix");
   const data = await db
     .collection("movies")
-    .find({ year: 2015 })
+    .find({ year: 2015, "imdb.rating": { $gt: 8.5 } })
     .limit(20)
     .toArray();
   const movies = JSON.parse(JSON.stringify(data));

@@ -9,14 +9,14 @@ export default function MovieDetails({ movie }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container mx-auto">
-        <h1 className="text-2xl">Movie Details For: </h1>
+        <h1 className="text-2xl">Movie Details For: {movie.title}</h1>
       </div>
 
       <div className="container mx-auto">
         <div className="flex flex-wrap my-8">
           {movie && (
             <div className="w-1/2 p-8 border border-black">
-              <h2 className="font-bold text-gray-600">{movie.title}</h2>
+              <img src={movie.poster} alt="movie poster" />
               <p className="text-xs ">Release date: {movie.year}</p>
               <p>IMDB Rating: {movie.imdb.rating}⭐️</p>
             </div>

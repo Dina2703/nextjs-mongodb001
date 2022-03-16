@@ -3,7 +3,7 @@ import Head from "next/head";
 import clientPromise from "../lib/mongodb";
 
 export default function Home({ movies }) {
-  console.log(movies);
+  // console.log(movies);
   return (
     <div>
       <Head>
@@ -14,6 +14,17 @@ export default function Home({ movies }) {
         <h1 className="text-2xl">
           Building modern Apps with Next.js and MongoDB
         </h1>
+      </div>
+
+      <div className="container mx-auto">
+        <div className="flex flex-wrap my-8">
+          {movies &&
+            movies.map((movie) => (
+              <div className="w-1/4 p-8 border border-black">
+                <h2 key={movies.id}>{movie.title}</h2>
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );

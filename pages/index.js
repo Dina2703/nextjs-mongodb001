@@ -26,6 +26,7 @@ export default function Home({ movies }) {
                 </h2>
                 <p className="text-xs ">Release date: {movie.year}</p>
                 <p>IMDB Rating: {movie.imdb.rating}⭐️</p>
+                <p className="text-xs">Movie_ID: {movie._id}</p>
               </div>
             ))}
         </div>

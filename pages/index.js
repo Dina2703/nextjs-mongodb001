@@ -22,6 +22,7 @@ export default function Home({ movies }) {
             movies.map((movie) => (
               <div className="w-1/4 p-8 border border-black">
                 <h2 key={movies.id}>{movie.title}</h2>
+                <p>{movie.year}</p>
               </div>
             ))}
         </div>
@@ -33,7 +34,11 @@ export default function Home({ movies }) {
 export async function getServerSideProps(context) {
   const client = await clientPromise;
   const db = client.db("sample_mflix");
-  const data = await db.collection("movies").find({}).limit(20).toArray();
+  const data = await db
+    .collection("movies")
+    .find({ year: 2015 })
+    .limit(20)
+    .toArray();
   const movies = JSON.parse(JSON.stringify(data));
   // client.db() will be the default database passed in the MONGODB_URI
   // You can change the database by calling the client.db() function and specifying a database like:

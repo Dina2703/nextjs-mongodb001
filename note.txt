@@ -54,3 +54,13 @@ add this line in the URL bar:
 http://localhost:3000/api/moviedetails?movie_id=12334
 
 will see: 12334 at the terminal.
+
+
+
+-------------getStaticProps method-------------
+getStaticProps() method works with the getStaticPaths() method.
+in getStaticProps() this * means --->
+ return {
+    props: { movie },
+    revalidate: 60*60*24         <-------- this means, update the data every day (60sec* 60mun*24 hour)
+  };

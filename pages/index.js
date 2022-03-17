@@ -40,7 +40,7 @@ export async function getServerSideProps(context) {
   const db = client.db("sample_mflix");
   const data = await db
     .collection("movies")
-    .find({ year: 2015, "imdb.rating": { $gt: 8.5 } })
+    .find({ year: 2014, "imdb.rating": { $gt: 8.5 } })
     .limit(20)
     .toArray();
   const movies = JSON.parse(JSON.stringify(data));

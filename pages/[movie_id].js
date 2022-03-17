@@ -8,10 +8,13 @@ export default function MovieDetails({ movie }) {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="container mx-auto">
-        <h1 className="text-2xl">Movie Details For: {movie.title}</h1>
-      </div>
-
+      <>
+        {movie && (
+          <div className="container mx-auto">
+            <h1 className="text-2xl">Movie Details For: {movie.title}</h1>
+          </div>
+        )}
+      </>
       <div className="container mx-auto">
         <div className="flex flex-wrap my-8">
           {movie && (
@@ -27,14 +30,23 @@ export default function MovieDetails({ movie }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps({ params }) {
   // console.log(context.query.movie_id);
+
   const data = await fetch(
-    `http://localhost:3000/api/moviedetails?movie_id=${context.query.movie_id}`
+    `http://localhost:3000/api/moviedetails?movie_id=${params.movie_id}`
   );
   const movie = await data.json();
 
   return {
     props: { movie },
+    revalidate: 60 * 60 * 24,
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true,
   };
 }

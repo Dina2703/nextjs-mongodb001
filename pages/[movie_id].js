@@ -34,13 +34,13 @@ export async function getStaticProps({ params }) {
   // console.log(context.query.movie_id);
 
   const data = await fetch(
-    `http://localhost:3000/api/moviedetails?movie_id=${params.movie_id}`
+    `${process.env.APP_DOMAIN}/api/moviedetails?movie_id=${params.movie_id}`
   );
   const movie = await data.json();
 
   return {
     props: { movie },
-    revalidate: 60 * 60 * 24,
+    revalidate: 1,
   };
 }
 

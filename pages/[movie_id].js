@@ -34,7 +34,7 @@ export async function getStaticProps({ params }) {
   // console.log(context.query.movie_id);
 
   const data = await fetch(
-    `${process.env.APP_DOMAIN}/api/moviedetails?movie_id=${params.movie_id}`
+    `${process.env.APP}/api/moviedetails?movie_id=${params.movie_id}`
   );
   const movie = await data.json();
 

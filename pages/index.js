@@ -41,7 +41,7 @@ export async function getServerSideProps(context) {
   const data = await db
     .collection("movies")
     .find({ year: 2014, "imdb.rating": { $gt: 8.5 } })
-    .limit(20)
+    .limit(5)
     .toArray();
   const movies = JSON.parse(JSON.stringify(data));
   // client.db() will be the default database passed in the MONGODB_URI

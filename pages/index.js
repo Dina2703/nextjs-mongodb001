@@ -21,7 +21,7 @@ export default function Home({ movies }) {
           {movies &&
             movies.map((movie) => (
               <div className="w-1/4 p-8 border border-black">
-                <h2 key={movies.id} className="font-bold text-gray-600">
+                <h2 key={movie.id} className="font-bold text-gray-600">
                   {movie.title}
                 </h2>
                 <p className="text-xs ">Release date: {movie.year}</p>

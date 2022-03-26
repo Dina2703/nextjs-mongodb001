@@ -49,7 +49,9 @@ export async function getServerSideProps(context) {
     // Then you can execute queries against your database like so:
     // db.find({}) or any of the MongoDB Node Driver commands
     return {
-      props: { movies: movies },
+      props: {
+        movies: movies,
+      },
     };
   } catch (e) {
     console.error(e);

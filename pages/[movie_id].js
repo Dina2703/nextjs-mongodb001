@@ -33,10 +33,10 @@ export async function getStaticProps({ params }) {
   // console.log(context.query.movie_id);
 
   const data = await fetch(
-    `https://nextjs-mongodb001.vercel.app/api/moviedetails?movie_id=${params.movie_id}`
+    `${process.env.APP}/api/moviedetails?movie_id=${params.movie_id}`
   );
   const movie = await data.json();
-
+  console.log(`from the getStaticProps ${movie}`);
   return {
     props: { movie },
     revalidate: 1,

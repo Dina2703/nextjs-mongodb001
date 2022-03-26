@@ -3,7 +3,7 @@ import Head from "next/head";
 import clientPromise from "../lib/mongodb";
 
 export default function Home({ movies }) {
-  // console.log(movies);
+  console.log(movies);
   return (
     <div>
       <Head>
@@ -37,12 +37,9 @@ export async function getServerSideProps(context) {
   try {
     const client = await clientPromise;
     const db = client.db("sample_mflix");
-    const data = await db
-      .collection("movies")
-      .find({ year: 2014, "imdb.rating": { $gt: 8.5 } })
-      .limit(5)
-      .toArray();
+    const data = await db.collection("movies").find({}).limit(2).toArray();
     const movies = JSON.parse(JSON.stringify(data));
+    console.log(`print ${movies}`);
     // client.db() will be the default database passed in the MONGODB_URI
     // You can change the database by calling the client.db() function and specifying a database like:
     // const db = client.db("myDatabase");
